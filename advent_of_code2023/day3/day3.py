@@ -1,5 +1,6 @@
 import re
 
+debug_file = ''
 schematic = []
 dummy_list = []
 shit_list = []
@@ -10,7 +11,7 @@ re_num = r'\d{1,}'
 re_sym = r'[^\d\.\n]'
 
 # create 2D map of schematic
-with open('C:\\Git_repo\\test-project\\AOC2023\\day3\\files\\sample1.txt') as f:
+with open('C:\\Git_repos\\codez_of_advent\\advent_of_code2023\\day3\\files\\puzzle1.txt') as f:
     file = f.read().splitlines()
 
 # create list with strings
@@ -49,19 +50,25 @@ for y_ln in schematic:
         
         part_sym = re.findall(re_sym, search_ln)
         if part_sym != dummy_list:
-            print('{} - Part: {} - REGISTERED\n'.format(search_ln, part))
+            #print('{}'.format(search_ln, part))
+            debug_file += '{}\n'.format(search_ln, part)
             parts_sum += int(part)
             parts_list.append(int(part))
-        else:
-            print('{} - Part: {} - NONE\n'.format(search_ln, part))
+        #else:
+            #print('{} - Part: {} - NONE\n'.format(search_ln, part))
         
     y_count +=1       
         
-
+print(debug_file)
 print('Answer: {}'.format(parts_sum)) # woop de fuckin doo
 # max answer:  614 994
 # prob answer: 554 197
 # real answer: 553 825
+
+import os, sys; os.chdir(sys.path[0])
+
+with open('debug_file', 'w') as f:
+    f.write(debug_file)
 
 
 
